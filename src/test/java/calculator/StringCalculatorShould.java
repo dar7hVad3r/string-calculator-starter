@@ -73,4 +73,13 @@ class StringCalculatorShould {
         assertEquals(count-1, calculator.GetCalledCount());
     }
 
+    @Test
+    void delimiter_of_different_length_should_work(){
+        assertEquals(6, calculator.add("//[***]\n1***2***3"));
+        assertEquals(6, calculator.add("//[**;]\n1**;2**;3"));
+        assertEquals(6, calculator.add("//[*;;]\n1*;;2*;;3"));
+        assertEquals(6, calculator.add("//[;;;]\n1;;;2;;;3"));
+    }
+
+
 }
