@@ -53,4 +53,11 @@ class StringCalculatorShould {
         }, "negatives not allowed -1");
     }
 
+    @Test
+    void multiple_negative_number_should_throw_exception(){
+        assertThrows(IllegalArgumentException.class, ()->{
+            calculator.add("-1,-2,3");
+        }, "negatives not allowed -1 -2");
+    }
+
 }
