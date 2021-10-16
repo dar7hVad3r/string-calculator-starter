@@ -38,4 +38,11 @@ class StringCalculatorShould {
         assertEquals(6, calculator.add("1\n2,3"));
         assertEquals(9, calculator.add("3\n3\n3"));
     }
+
+    @Test
+    void string_with_custom_delimiter(){
+        assertEquals(3, calculator.add("//;\n1;2"));
+        assertEquals(3, calculator.add("//%\n1%2"));
+        assertEquals(3, calculator.add("//*\n1*2"));
+    }
 }
