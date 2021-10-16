@@ -62,6 +62,13 @@ class StringCalculatorShould {
     }
 
     @Test
+    void values_greater_than_1000_should_be_considered_0(){
+        assertEquals(2, calculator.add("1001,2"));
+        assertEquals(0, calculator.add("1001,2000"));
+        assertEquals(1, calculator.add("1,2000"));
+    }
+
+    @Test
     void GetCallCount_should_return_number_of_times_add_called(){
         assertEquals(count-1, calculator.GetCalledCount());
     }

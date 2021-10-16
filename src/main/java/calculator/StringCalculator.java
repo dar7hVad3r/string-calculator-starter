@@ -52,6 +52,7 @@ class StringCalculator {
                         flag.set(true);
                     }
                 })
+                .filter(i -> i<=1000)
                 .sum();
         if ( flag.get() == true ) throw new IllegalArgumentException("negatives not allowed "+negList);
         return sum;
