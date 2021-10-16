@@ -32,4 +32,10 @@ class StringCalculatorShould {
     void string_with_unknown_number_of_values_return_addition(){
         assertEquals(45, calculator.add("1,2,3,4,5,6,7,8,9"));
     }
+
+    @Test
+    void string_with_slashN_as_delimiter(){
+        assertEquals(6, calculator.add("1\n2,3"));
+        assertEquals(9, calculator.add("3\n3\n3"));
+    }
 }
