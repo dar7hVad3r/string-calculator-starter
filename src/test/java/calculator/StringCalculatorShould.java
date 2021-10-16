@@ -81,5 +81,17 @@ class StringCalculatorShould {
         assertEquals(6, calculator.add("//[;;;]\n1;;;2;;;3"));
     }
 
+    @Test
+    void multiple_delimiter_should_work(){
+        assertEquals(6, calculator.add("//[*][%]\n1*2%3"));
+        assertEquals(14, calculator.add("//[%][*]\n9*2%3"));
+        assertEquals(7, calculator.add("//[&][@]\n2&2@3"));
+    }
 
+    @Test
+    void multiple_delimiter_with_different_length_should_work(){
+        assertEquals(6, calculator.add("//[***][%%]\n1***2%%3"));
+        assertEquals(14, calculator.add("//[%][**]\n9**2%3"));
+        assertEquals(7, calculator.add("//[##][@@@@]\n2##2@@@@3"));
+    }
 }
