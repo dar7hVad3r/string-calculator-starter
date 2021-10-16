@@ -16,12 +16,13 @@ class StringCalculator {
             actInput.append(input);
         }
 
-        System.out.println( "delim" + delim.toString());
-        System.out.println(actInput.toString());
-
         return Arrays.stream(actInput.toString().split( "["+delim+"]" ))
                 .filter(i-> !i.isBlank())
                 .mapToInt(Integer::parseInt)
+                .peek(num->{
+                    if ( num < 0 )
+                        throw new IllegalArgumentException("negatives not allowed "+num);
+                })
                 .sum();
     }
 }

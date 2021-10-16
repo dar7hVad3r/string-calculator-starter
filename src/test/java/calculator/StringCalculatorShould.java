@@ -45,4 +45,12 @@ class StringCalculatorShould {
         assertEquals(3, calculator.add("//%\n1%2"));
         assertEquals(3, calculator.add("//*\n1*2"));
     }
+
+    @Test
+    void negative_number_should_throw_exception(){
+        assertThrows(IllegalArgumentException.class, ()->{
+            calculator.add("-1,2,3");
+        }, "negatives not allowed -1");
+    }
+
 }
