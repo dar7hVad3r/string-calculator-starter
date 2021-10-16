@@ -6,10 +6,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringCalculatorShould {
-
+    int count = 0;
     StringCalculator calculator;
     @BeforeEach
     void beginTest(){
+        count++;
         calculator = new StringCalculator();
     }
 
@@ -58,6 +59,11 @@ class StringCalculatorShould {
         assertThrows(IllegalArgumentException.class, ()->{
             calculator.add("-1,-2,3");
         }, "negatives not allowed -1 -2");
+    }
+
+    @Test
+    void GetCallCount_should_return_number_of_times_add_called(){
+        assertEquals(count-1, calculator.GetCalledCount());
     }
 
 }

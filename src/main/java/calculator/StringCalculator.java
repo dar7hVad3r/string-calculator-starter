@@ -7,7 +7,17 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 class StringCalculator {
+    // addCalledCount variable could have been static.
+    // but in problem, it expected to be called on object i.e. "public int getCalledCount();"
+    // so the count returned will be how many times method is called on particular object
+    private int addCalledCount;
+
+    public StringCalculator(){
+        addCalledCount = 0;
+    }
+
     public int add(String input) {
+        this.addCalledCount += 1;
         if ( input.length() == 0 )
             return 0;
         StringBuilder delim = new StringBuilder("\\n,");
@@ -45,6 +55,9 @@ class StringCalculator {
                 .sum();
         if ( flag.get() == true ) throw new IllegalArgumentException("negatives not allowed "+negList);
         return sum;
+    }
+    public int GetCalledCount(){
+        return this.addCalledCount;
     }
 }
 
