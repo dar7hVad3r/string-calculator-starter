@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringCalculatorShould {
+
     StringCalculator calculator;
     @BeforeEach
     void beginTest(){
@@ -17,5 +18,8 @@ class StringCalculatorShould {
         assertEquals(0, calculator.add(""));
     }
 
-
+    @Test
+    void string_with_1_value_should_return_value(){
+        assertEquals(1, calculator.add("1"));
+    }
 }
