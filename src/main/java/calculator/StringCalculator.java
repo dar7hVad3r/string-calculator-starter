@@ -5,6 +5,10 @@ class StringCalculator {
     public int add(String input) {
         if ( input.length() == 0 )
             return 0;
-        return  Integer.parseInt(input);
+        String[] strArr = input.split(",");
+        int sum = 0;
+        for ( String s : strArr )
+            sum += Integer.parseInt(s);
+        return sum;
     }
 }

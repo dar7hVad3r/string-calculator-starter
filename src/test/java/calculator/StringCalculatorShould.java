@@ -22,4 +22,9 @@ class StringCalculatorShould {
     void string_with_1_value_should_return_value(){
         assertEquals(1, calculator.add("1"));
     }
+
+    @Test
+    void string_with_comma_seperated_values_should_return_addition(){
+        assertEquals(3, calculator.add("1,2"));
+    }
 }
