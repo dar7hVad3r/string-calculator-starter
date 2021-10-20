@@ -56,9 +56,9 @@ class StringCalculator {
         // flag to verify no negative numbers, negList to keep track of multiple negative values
         AtomicBoolean flag = new AtomicBoolean(false);
         List<String> negList = new ArrayList<>();
-/*
 
-        Alternate code which can be used instead of using stream()
+
+//        Alternate code which can be used instead of using stream()
 
         int sum = 0;
         for ( String s : actInput.toString().split("["+delim+"]") ){
@@ -66,6 +66,7 @@ class StringCalculator {
                 flag.set(true);
                 negList.add(s+" ");
             } else if (!flag.get()){
+                if ( !s.isBlank() && (sum + Integer.parseInt(s)) > 1000 ) break;
                 sum += s.isBlank() ? 0 : (Integer.parseInt(s)) > 1000 ? 0 : Integer.parseInt(s) ;
             }
         }
@@ -73,9 +74,9 @@ class StringCalculator {
             throw new IllegalArgumentException("negatives not allowed "+negList);
         }
         return sum;
-*/
+
         // iterate over each string that the delimiter has split
-        int sum = Arrays.stream(actInput.toString().split( "["+delim+"]" ))
+  /*      int sum = Arrays.stream(actInput.toString().split( "["+delim+"]" ))
                 .filter(i-> !i.isBlank())   // filter if the string is blank
                 .mapToInt(Integer::parseInt)  // parse the integer value from string
                 .peek(i -> {                    // check if number is negative and set flag and list if it is
@@ -97,6 +98,8 @@ class StringCalculator {
                     return num1 + num2;
                 }).orElse(0);  // get addition of all the filtered values .reduce() can also be used
         if ( flag.get()  ) throw new IllegalArgumentException("negatives not allowed "+negList);
+
+   */
         return sum;
     }
     public int GetCalledCount(){
