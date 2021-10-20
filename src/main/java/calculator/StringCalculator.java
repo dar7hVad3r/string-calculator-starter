@@ -1,5 +1,8 @@
 package calculator;
+/*
+[9:34 AM] Hardik Prajapati
 
+ */
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,12 +31,26 @@ class StringCalculator {
         StringBuilder delim = new StringBuilder("\\n,");
         StringBuilder actInput = new StringBuilder();
 
+        // flags for keeping track of E/O at beginning of string
+        AtomicBoolean evenFlag = new AtomicBoolean(false);
+        AtomicBoolean oddFlag = new AtomicBoolean(false);
+
+        // set the flags according to starting value
+        if ( input.startsWith("E") )
+            evenFlag.set(true);
+        else if ( input.startsWith("O") ) oddFlag.set(true);
+
         // check if input needs to be filtered
         if ( input.startsWith("//") ){
-            delim.append(input, input.indexOf("//")+2, input.indexOf("\n")); // string between '//' and '\n' is delmiter
+            delim.append(input, input.indexOf("//")+2, input.indexOf("\n")); // string between '//' and '\n' is delimiter
             actInput.append( input.substring(input.indexOf("\n")) ); // string after '\n' is input string
         }else{
-            actInput.append(input);
+            if ( !evenFlag.get() && !oddFlag.get() )
+                actInput.append(input);
+            else{
+                if (evenFlag.get()) actInput.append(input.substring(input.indexOf("E")+1));
+                else if( oddFlag.get() ) actInput.append(input.substring(input.indexOf("O")+1));
+            }
         }
 
         // flag to verify no negative numbers, negList to keep track of multiple negative values
@@ -68,7 +85,17 @@ class StringCalculator {
                     }
                 })
                 .filter(i -> i<=1000)   // filter if the number is greater than 1000
-                .sum();  // get addition of all the filtered values .reduce() can also be used
+                .filter( i -> {
+                    if ( !evenFlag.get() && !oddFlag.get() )
+                        return true;
+                    else{
+                        if (evenFlag.get()) return i % 2 == 0;
+                        return i % 2 != 0;
+                    }
+                } )
+                .reduce((num1, num2)-> {
+                    return num1 + num2;
+                }).orElse(0);  // get addition of all the filtered values .reduce() can also be used
         if ( flag.get()  ) throw new IllegalArgumentException("negatives not allowed "+negList);
         return sum;
     }

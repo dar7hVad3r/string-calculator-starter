@@ -94,4 +94,10 @@ class StringCalculatorShould {
         assertEquals(14, calculator.add("//[%][**]\n9**2%3"));
         assertEquals(7, calculator.add("//[##][@@@@]\n2##2@@@@3"));
     }
+
+    @Test void string_with_starting_letter_eo_should_return_addition_corresponding_letter(){
+        assertEquals(2, calculator.add("E1,2,3"));
+        assertEquals(4, calculator.add("O1,2,3"));
+    }
+
 }
