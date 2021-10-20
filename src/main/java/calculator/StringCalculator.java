@@ -59,7 +59,7 @@ class StringCalculator {
 
 
 //        Alternate code which can be used instead of using stream()
-
+/*
         int sum = 0;
         for ( String s : actInput.toString().split("["+delim+"]") ){
             if ( !s.isBlank() && Integer.parseInt(s) < 0 ){
@@ -74,9 +74,9 @@ class StringCalculator {
             throw new IllegalArgumentException("negatives not allowed "+negList);
         }
         return sum;
-
+*/
         // iterate over each string that the delimiter has split
-  /*      int sum = Arrays.stream(actInput.toString().split( "["+delim+"]" ))
+       int sum = Arrays.stream(actInput.toString().split( "["+delim+"]" ))
                 .filter(i-> !i.isBlank())   // filter if the string is blank
                 .mapToInt(Integer::parseInt)  // parse the integer value from string
                 .peek(i -> {                    // check if number is negative and set flag and list if it is
@@ -99,7 +99,7 @@ class StringCalculator {
                 }).orElse(0);  // get addition of all the filtered values .reduce() can also be used
         if ( flag.get()  ) throw new IllegalArgumentException("negatives not allowed "+negList);
 
-   */
+
         return sum;
     }
     public int GetCalledCount(){
